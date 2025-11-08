@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 import joblib as jb
 
 print('[Loading Data]start loading data...')
-data = pd.read_csv(r'C:\I will prepare my self to destroy the world\Programming\python program\MY Projects\Classification Projects\Heart Diseases\train\heart_disease_data.csv')
+data = pd.read_csv(r'heart_disease_data.csv')
 print('[Loading Data] data loaded successfully')
 
 print('[Splitting Data]start splitting data...')
@@ -19,4 +19,4 @@ print('[Training]model training completed successfully!')
 
 
 print('[Saving]start saving model...')
-jb.dump(model, r'C:\I will prepare my self to destroy the world\Programming\python program\MY Projects\Classification Projects\Heart Diseases\models\LRv1.pkl')
+jb.dump(model, r'models\LRv1.pkl')
