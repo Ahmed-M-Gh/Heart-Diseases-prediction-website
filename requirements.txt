@@ -1,6 +1,6 @@
 pandas
 numpy
-sicit-learn
+scikit-learn
 flask
 matplotlib
 joblib
