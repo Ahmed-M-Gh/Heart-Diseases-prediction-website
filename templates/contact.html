@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Ahmed Ghonime</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <h1>Heart Disease Prediction</h1>
+    <div>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('prediction') }}">Prediction</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>Contact the Developer</h2>
+    <img src="{{ url_for('static', filename='My photo.jpeg') }}" alt="Ahmed Ghonime" style="width:180px; border-radius:50%; box-shadow:0 0 30px rgba(0,194,255,0.6); margin:1rem auto;">
+    <p><strong>Name:</strong> Ahmed Ghonime</p>
+    <p><strong>Email:</strong> <a href="mailto:ahmed@example.com" class="link">ahmed@example.com</a></p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/Ahmed-M-Gh" target="_blank" class="link">github.com/Ahmed-M-Gh</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/ahmed-ghonime" target="_blank" class="link">linkedin.com/in/ahmed-ghonime</a></p>
+  </section>
+</body>
+</html>

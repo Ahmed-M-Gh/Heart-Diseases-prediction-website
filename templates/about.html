@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Heart Disease Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <h1>Heart Disease Prediction</h1>
+    <div>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('prediction') }}">Prediction</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </div>
+
+  <section class="about-section">
+    <h2>About the Model</h2>
+    <img src="{{ url_for('static', filename='about-heart-illustration.png') }}" alt="Heart illustration">
+    <p>
+      This project utilizes a <strong>Logistic Regression</strong> model trained on real-world medical datasets  
+      to predict the presence or absence of heart disease.  
+      The system processes multiple patient indicators such as cholesterol,  
+      blood pressure, and age to generate accurate predictions.
+    </p>
+    <p>
+      The model was optimized and evaluated using various performance metrics  
+      to ensure reliability and high accuracy in practical use cases.
+    </p>
+  </section>
+</body>
+</html>

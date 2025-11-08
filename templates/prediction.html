@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prediction | Heart Disease</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* بعض تعديلات صغيرة محلية للترتيب داخل الصفحة */
+    .fields-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      max-width:1000px;
+      margin: 1.5rem auto;
+    }
+    .field{ background: rgba(255,255,255,0.04); padding:12px; border-radius:10px; }
+    label{ display:block; font-size:0.95rem; color:#dfe7ff; }
+    input, select{ width:100%; margin-top:8px; padding:10px; border-radius:8px; border: none; outline:none; background: rgba(0,0,0,0.3); color:#fff; }
+    .result-box{ max-width:1000px; margin:1rem auto; padding:14px; border-radius:12px; background: rgba(0,0,0,0.45); color:#e6f7ff; text-align:center; font-weight:700; }
+    .error{ background: rgba(255,0,0,0.12); color:#ffb3b3; border: 1px solid rgba(255,0,0,0.12); }
+    @media(max-width:900px){ .fields-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px){ .fields-grid{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>Heart Disease Prediction</h1>
+    <div>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('prediction') }}">Prediction</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>Enter Patient Data</h2>
+
+    <form method="POST" class="prediction-form" style="max-width:1100px; margin:0 auto;">
+      <div class="fields-grid">
+        <div class="field">
+          <label>age</label>
+          <input name="age" type="number" step="any" placeholder="EX 55" required>
+        </div>
+
+        <div class="field">
+          <label>sex (0 = female, 1 = male)</label>
+          <select name="sex" required>
+            <option value="" disabled selected>choose</option>
+            <option value="1">Male (1)</option>
+            <option value="0">Female (0)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>cp (chest pain type — 0..3)</label>
+          <select name="cp" required>
+            <option value="" disabled selected>choose</option>
+            <option value="0">Typical angina (0)</option>
+            <option value="1">Atypical angina (1)</option>
+            <option value="2">Non-anginal pain (2)</option>
+            <option value="3">Asymptomatic (3)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>trestbps (resting blood pressure)</label>
+          <input name="trestbps" type="number" step="any" placeholder="EX 140" required>
+        </div>
+
+        <div class="field">
+          <label>chol (serum cholesterol mg/dl)</label>
+          <input name="chol" type="number" step="any" placeholder="EX 250" required>
+        </div>
+
+        <div class="field">
+          <label>fbs (&gt; 120 mg/dl) (0 = false, 1 = true)</label>
+          <select name="fbs" required>
+            <option value="" disabled selected>choose</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>restecg (resting electrocardiographic results 0..2)</label>
+          <select name="restecg" required>
+            <option value="" disabled selected>choose</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>thalach (maximum heart rate achieved)</label>
+          <input name="thalach" type="number" step="any" placeholder="EX 150" required>
+        </div>
+
+        <div class="field">
+          <label>exang (exercise induced angina 0 = no, 1 = yes)</label>
+          <select name="exang" required>
+            <option value="" disabled selected>choose</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>oldpeak (ST depression caused by exercise relative to rest)</label>
+          <input name="oldpeak" type="number" step="any" placeholder="EX 1.2" required>
+        </div>
+
+        <div class="field">
+          <label>slope (slope of peak exercise ST segment 0..2)</label>
+          <select name="slope" required>
+            <option value="" disabled selected>choose</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>ca (number of major vessels colored by fluoroscopy 0..3)</label>
+          <select name="ca" required>
+            <option value="" disabled selected>choose</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>thal (3 = normal; 6 = fixed defect; 7 = reversible defect)</label>
+          <select name="thal" required>
+            <option value="" disabled selected>choose</option>
+            <option value="3">3 (normal)</option>
+            <option value="6">6 (fixed defect)</option>
+            <option value="7">7 (reversible defect)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:18px;">
+        <button type="submit" class="btn">Predict Now</button>
+      </div>
+    </form>
+
+    {% if error %}
+      <div class="result-box error">{{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+      <div class="result-box">{{ result }}</div>
+    {% endif %}
+
+  </section>
+</body>
+</html>

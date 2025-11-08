@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Heart Disease Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <h1>Heart Disease Prediction</h1>
+    <div>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('prediction') }}">Prediction</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>AI-Powered Heart Health Assistant ❤️</h2>
+    <p>
+      Welcome to our advanced <strong>Heart Disease Prediction System</strong>,  
+      a project that combines medical knowledge and artificial intelligence  
+      to identify the likelihood of heart disease based on patient data.  
+      Early detection can save lives, and this tool aims to make that possible  
+      through intelligent analysis and accurate prediction.
+    </p>
+    <a href="{{ url_for('prediction') }}" class="btn">Try Prediction Now</a>
+  </section>
+</body>
+</html>
